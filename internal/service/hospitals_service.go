@@ -24,7 +24,7 @@ func (h *HospitalsService) AddHospital(hospital entities.Hospital) (string, erro
 }
 
 func (h *HospitalsService) GetHospital() ([]entities.Hospital, error) {
-	var hospitals []entities.Hospital
+	hospitals := []entities.Hospital{}
 	rows, err := h.DB.Query("SELECT hospital_id, name, address, contact_number, COALESCE(image, '') AS image FROM hospitals")
 	if err != nil {
 		return nil, err
