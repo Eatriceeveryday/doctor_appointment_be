@@ -1,0 +1,1 @@
+ALTER TABLE doctor_schedules DROP CONSTRAINT chk_schedules_day;

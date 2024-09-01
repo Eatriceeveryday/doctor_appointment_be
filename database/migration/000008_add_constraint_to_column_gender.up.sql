@@ -1,0 +1,1 @@
+ALTER TABLE patients ADD CONSTRAINT chk_gender_patients CHECK ( gender IN ('Laki-laki' , 'Perempuan') )

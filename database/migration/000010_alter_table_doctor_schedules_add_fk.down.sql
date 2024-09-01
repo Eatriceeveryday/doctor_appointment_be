@@ -1,0 +1,1 @@
+ALTER TABLE doctor_schedules DROP CONSTRAINT doctor_schedules_doctor_id_fkey;

@@ -1,0 +1,1 @@
+ALTER TABLE doctor_schedules ADD FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id);

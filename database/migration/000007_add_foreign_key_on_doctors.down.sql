@@ -1,0 +1,1 @@
+ALTER TABLE doctors DROP CONSTRAINT doctors_hospital_id_fkey;
