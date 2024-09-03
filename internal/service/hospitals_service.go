@@ -15,8 +15,8 @@ func NewHospitalsService(db *sql.DB) HospitalsService {
 
 func (h *HospitalsService) AddHospital(hospital entities.Hospital) (string, error) {
 	var hospitalId string
-	err := h.DB.QueryRow("INSERT INTO hospitals (name, address, contact_number) VALUES ($1, $2, $3) RETURNING hospital_id",
-		hospital.Name, hospital.Address, hospital.ContactNumber).Scan(&hospitalId)
+	err := h.DB.QueryRow("INSERT INTO hospitals (name, address, contact_number, image) VALUES ($1, $2, $3, $4) RETURNING hospital_id",
+		hospital.Name, hospital.Address, hospital.ContactNumber, hospital.Image).Scan(&hospitalId)
 	if err != nil {
 		return "", err
 	}

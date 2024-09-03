@@ -16,7 +16,7 @@ func AuthenticateToken(next http.Handler) http.Handler {
 		reqToken := r.Header.Get("Authorization")
 
 		if reqToken == "" {
-			utils.JSONResponse(w, utils.Response{Msg: "Invalid Token"}, http.StatusBadRequest)
+			utils.JSONResponse(w, utils.Response{Msg: "Invalid Token"}, http.StatusUnauthorized)
 			return
 		}
 
@@ -25,7 +25,7 @@ func AuthenticateToken(next http.Handler) http.Handler {
 
 		id, err := validateToken(reqToken)
 		if err != nil {
-			utils.JSONResponse(w, utils.Response{Msg: err.Error()}, http.StatusBadRequest)
+			utils.JSONResponse(w, utils.Response{Msg: err.Error()}, http.StatusUnauthorized)
 			return
 		}
 

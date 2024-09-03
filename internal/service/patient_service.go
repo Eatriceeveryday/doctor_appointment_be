@@ -24,7 +24,7 @@ func (ps *PatientService) AddPatient(patient entities.Patients) error {
 }
 
 func (ps *PatientService) GetAllPatient(userId string) ([]entities.Patients, error) {
-	var patients []entities.Patients
+	patients := []entities.Patients{}
 	rows, err := ps.DB.Query("SELECT patient_id, name, date_of_birth::TEXT, gender FROM patients WHERE user_id = $1", userId)
 	if err != nil {
 		return []entities.Patients{}, err

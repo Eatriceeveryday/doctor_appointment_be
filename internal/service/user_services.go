@@ -3,7 +3,9 @@ package service
 import (
 	"BackendTugasAkhir/entities"
 	"database/sql"
+	"errors"
 	"fmt"
+	"github.com/lib/pq"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -24,6 +26,11 @@ func (us *UserServices) AddUser(user entities.Users) (string, error) {
 	err = us.DB.QueryRow("INSERT INTO users (email, username, password, contact_number) VALUES ($1, $2, $3, $4) RETURNING user_id",
 		user.Email, user.UserName, hashedPassword, user.ContactNumber).Scan(&userId)
 	if err != nil {
+		if pqErr, ok := err.(*pq.Error); ok {
+			if pqErr.Code == "23505" {
+				return "", errors.New("User already exists")
+			}
+		}
 		return "", err
 	}
 	return userId, nil
